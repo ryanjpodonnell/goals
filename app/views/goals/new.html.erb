@@ -1,0 +1,22 @@
+<h1>New Goal</h1>
+
+<form action="<%= goals_url %>" method="post">
+	<input type="hidden" name="authenticity_token"
+				 value="<%= form_authenticity_token %>">
+
+	<label>Title
+		<input type="text" name="goal[title]" value=" <%= @goal.title %>">
+	</label>
+
+	<label>Description
+		<input type="input" name="goal[description]" value=" <%= @goal.description %>">
+	</label>
+
+
+	<input type="hidden" name="goal[private]" value = "false">
+	<label>Private?
+		<input type="checkbox" name="goal[private]" value="true">
+	</label>
+
+	<p><input type="submit" value="Create Goal"></p>
+</form>

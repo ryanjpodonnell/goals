@@ -1,0 +1,21 @@
+<h1>Goals</h1>
+
+<h2><%= @user.username %>'s Goals</h2>
+<% @user.goals.each do |goal| %>
+	<%= checked(goal) %>
+	<%= link_to goal.title, goal_url(goal) %> -
+	<%= link_to "Edit Goal", edit_goal_url(goal) %>
+	<%= "-"; button_to "Complete!", complete_goal_url(goal) if goal.complete == false%>
+	<br>
+<% end %>
+
+<%= link_to "Create New Goal", new_goal_url %>
+
+<br><hr><br>
+
+<h2>Public Goals</h2>
+
+<% @public_goals.each do |goal| %>
+	<%= link_to goal.title, goal_url(goal) %> :
+	<%= link_to goal.user.username, user_url(goal.user) %> <br>
+<% end %>

@@ -1,0 +1,24 @@
+<h1><%= @goal.title %></h1>
+<%= @goal.description %>
+
+<br />
+
+<% @goal.comments.each do |comment| %>
+<%= User.find(comment.author_id).username %> : <%= comment.body %><br />
+<% end %>
+
+<br />
+
+<form action="<%= goal_comments_url(@goal) %>" method="post" accept-charset="utf-8">
+	<input type="hidden" name="authenticity_token"
+				 value="<%= form_authenticity_token %>">
+
+	<input type="hidden" name=comment[commentable_type] value="Goal">
+	Add Comment:
+	<input type="text" id="Body" name=comment[body]>
+
+	<p><input type="submit" value="Add Comment"></p>
+</form>
+
+
+<%= link_to "All Goals", goals_url %>
